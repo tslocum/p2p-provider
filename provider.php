@@ -15,7 +15,7 @@ if (isset($_GET['port'])) {
 	$request_peerid = $_SERVER['REMOTE_ADDR'] . ':44545';
 }
 
-$rows = $GLOBALS['db']->selectWhere(PROVIDER_FILE, new SimpleWhereClause(PROVIDER_PEERID, '=', $request_peerid, STRING_COMPARISON), 1);
+$rows = $db->selectWhere(PROVIDER_FILE, new SimpleWhereClause(PROVIDER_PEERID, '=', $request_peerid, STRING_COMPARISON), 1);
 if (count($rows) > 0) {
 	$db->updateSetWhere(PROVIDER_FILE, array(PROVIDER_LASTPING => time()), new SimpleWhereClause(PROVIDER_PEERID, '=', $request_peerid, STRING_COMPARISON));
 } else {
